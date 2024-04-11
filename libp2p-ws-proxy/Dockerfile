@@ -9,9 +9,7 @@ WORKDIR /proxy
 RUN git clone https://github.com/PinoutLTD/libp2p-ws-proxy
 COPY run.sh libp2p-ws-proxy
 WORKDIR /proxy/libp2p-ws-proxy
-RUN ls -a
 RUN git checkout hass-addon
-RUN ls -a
 RUN npm ci --only=production
 
 # Copy data for add-on
