@@ -31,7 +31,7 @@ jobs:
           args: |
             --all \
             --target ${{ env.ADDON_NAME }} \
-            --docker-hub ghcr.io/pinoutltd
+            --docker-hub ghcr.io/pinoutltd \
             --image ${{ env.ADDON_NAME }}-{arch} 
       # - name: 'Build and Push Image'
       #   run: |
