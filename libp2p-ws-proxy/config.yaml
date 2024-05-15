@@ -1,6 +1,6 @@
 name: "Libp2p <-> WS Proxy"
 description: "Add-on to run Libp2p-ws proxy"
-version: "dev"
+version: "0.0.1"
 slug: "libp2p-proxy"
 init: false
 arch:
