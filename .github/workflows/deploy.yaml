@@ -20,9 +20,9 @@ jobs:
           username: ${{github.actor}}
           password: ${{secrets.GITHUB_TOKEN}}
       - name: 'Build Inventory Image'
-          run: |
-            docker build . --build-arg BUILD_FROM="homeassistant/amd64-base:latest" --tag ghcr.io/PinoutLTD/libp2p-ws-proxy:latest
-            docker push ghcr.io/PinoutLTD/libp2p-ws-proxy:latest
+        run: |
+          docker build libp2p-ws-proxy --build-arg BUILD_FROM="homeassistant/amd64-base:latest" --tag ghcr.io/PinoutLTD/libp2p-ws-proxy:latest
+          docker push ghcr.io/PinoutLTD/libp2p-ws-proxy:latest
       # - name: Publish
       #   uses: home-assistant/builder@master
       #   with:
