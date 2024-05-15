@@ -27,8 +27,6 @@ jobs:
           password: ${{secrets.GITHUB_TOKEN}}
       - name: 'Build and Push Image'
         run: |
-          docker build libp2p-ws-proxy --build-arg BUILD_FROM="homeassistant/aarch64-base:latest" --tag ghcr.io/pinoutltd/${{ env.ADDON_NAME }}-aarch64:latest
-          docker push ghcr.io/pinoutltd/${{ env.ADDON_NAME }}-aarch64:latest
           docker build libp2p-ws-proxy --build-arg BUILD_FROM="homeassistant/amd64-base:latest" --tag ghcr.io/pinoutltd/${{ env.ADDON_NAME }}-amd64:latest
           docker push ghcr.io/pinoutltd/${{ env.ADDON_NAME }}-amd64:latest
           docker build libp2p-ws-proxy --build-arg BUILD_FROM="homeassistant/armhf-base:latest" --tag ghcr.io/pinoutltd/${{ env.ADDON_NAME }}-armhf:latest
