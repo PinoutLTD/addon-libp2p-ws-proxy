@@ -1,5 +1,8 @@
 name: "Publish"
 
+env:
+  ADDON_NAME: libp2p-ws-proxy
+
 on:
   push:
     branches:
@@ -16,20 +19,21 @@ jobs:
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v3
-      - name: Login to DockerHub
+      - name: Login to ghcr.io
         uses: docker/login-action@v2
         with:
           registry: ghcr.io
           username: ${{github.actor}}
           password: ${{secrets.GITHUB_TOKEN}}
-      - name: 'Build Inventory Image'
+      - name: 'Build and Push Image'
         run: |
-          docker build libp2p-ws-proxy --build-arg BUILD_FROM="homeassistant/amd64-base:latest" --tag ghcr.io/pinoutltd/libp2p-ws-proxy:latest
-          docker push ghcr.io/pinoutltd/libp2p-ws-proxy:latest
-      # - name: Publish
-      #   uses: home-assistant/builder@master
-      #   with:
-      #     args: |
-      #       --all \
-      #       --target libp2p-ws-proxy \
-      #       --docker-hub user-name-or-space-name
+          docker build libp2p-ws-proxy --build-arg BUILD_FROM="homeassistant/aarch64-base:latest" --tag ghcr.io/pinoutltd/${{ env.ADDON_NAME }}-aarch64:latest
+          docker push ghcr.io/pinoutltd/${{ env.ADDON_NAME }}-aarch64:latest
+          docker build libp2p-ws-proxy --build-arg BUILD_FROM="homeassistant/amd64-base:latest" --tag ghcr.io/pinoutltd/${{ env.ADDON_NAME }}-amd64:latest
+          docker push ghcr.io/pinoutltd/${{ env.ADDON_NAME }}-amd64:latest
+          docker build libp2p-ws-proxy --build-arg BUILD_FROM="homeassistant/armhf-base:latest" --tag ghcr.io/pinoutltd/${{ env.ADDON_NAME }}-armhf:latest
+          docker push ghcr.io/pinoutltd/${{ env.ADDON_NAME }}-armhf:latest
+          docker build libp2p-ws-proxy --build-arg BUILD_FROM="homeassistant/armv7-base:latest" --tag ghcr.io/pinoutltd/${{ env.ADDON_NAME }}-armv7:latest
+          docker push ghcr.io/pinoutltd/${{ env.ADDON_NAME }}-armv7:latest
+          docker build libp2p-ws-proxy --build-arg BUILD_FROM="homeassistant/i386-base:latest" --tag ghcr.io/pinoutltd/${{ env.ADDON_NAME }}-i386:latest
+          docker push ghcr.io/pinoutltd/${{ env.ADDON_NAME }}-i386:latest
